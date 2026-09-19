@@ -11,7 +11,7 @@ import random
 
 import pytest
 
-from rag.db import (
+from stego.db import (
     connect,
     quantize_int8,
     serialize_f32,
@@ -19,7 +19,7 @@ from rag.db import (
     transaction,
     truncate_and_normalize,
 )
-from rag.migrations import migrate
+from stego.migrations import migrate
 
 
 @pytest.fixture

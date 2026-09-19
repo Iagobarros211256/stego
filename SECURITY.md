@@ -8,7 +8,7 @@ local. Algumas consequencias que vale ter claras.
 `index.sqlite` contem o **texto integral** de tudo que foi indexado,
 nao apenas vetores. Quem tem o arquivo tem o acervo.
 
-- Fica em `~/.local/share/rag-pessoal/` por padrao, fora do repositorio.
+- Fica em `~/.local/share/stego/` por padrao, fora do repositorio.
 - Esta no `.gitignore`. Nunca versione, nunca anexe, nunca suba para
   nuvem sem cifra.
 - Backup: trate como trataria os documentos originais.
@@ -22,7 +22,7 @@ pode aparecer numa resposta.
 Antes de indexar um diretorio novo:
 
 ```bash
-rag index <dir> --dry-run
+stego index <dir> --dry-run
 ```
 
 Mantenha um `.ragignore` na raiz de cada diretorio indexado. Use o
@@ -30,7 +30,7 @@ Mantenha um `.ragignore` na raiz de cada diretorio indexado. Use o
 
 ## O servidor nao tem autenticacao
 
-`rag serve` escuta em `127.0.0.1` e assume um unico usuario na maquina.
+`stego serve` escuta em `127.0.0.1` e assume um unico usuario na maquina.
 Nao exponha a porta: sem login, qualquer um que alcance o endereco le
 todo o acervo. Nao rode atras de proxy reverso publico, nao mude o host
 para `0.0.0.0`, e cuidado com encaminhamento de porta por SSH.

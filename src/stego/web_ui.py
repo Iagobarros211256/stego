@@ -296,7 +296,7 @@ fetch('/api/stats').then(r => r.json()).then(d => {
     vazioEl.hidden = false;
     vazioEl.innerHTML =
       '<p>O indice esta vazio.</p>' +
-      '<p>Indexe uma pasta com <code>rag index ~/suas-notas</code> ' +
+      '<p>Indexe uma pasta com <code>stego index ~/suas-notas</code> ' +
       'e recarregue esta pagina.</p>';
   }
 }).catch(() => {});

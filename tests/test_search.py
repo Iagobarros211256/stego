@@ -11,10 +11,10 @@ import hashlib
 
 import pytest
 
-from rag.db import connect
-from rag.indexer import index_directory
-from rag.migrations import migrate
-from rag.search import (
+from stego.db import connect
+from stego.indexer import index_directory
+from stego.migrations import migrate
+from stego.search import (
     build_fts_query,
     reciprocal_rank_fusion,
     search,

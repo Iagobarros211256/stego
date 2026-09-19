@@ -27,7 +27,7 @@ def cmd_init_db(args: argparse.Namespace) -> int:
 def cmd_status(args: argparse.Namespace) -> int:
     if not CONFIG.db_path.exists():
         print(f"indice nao existe ainda: {CONFIG.db_path}")
-        print("rode: rag init-db")
+        print("rode: stego init-db")
         return 1
 
     conn = connect()
@@ -62,7 +62,7 @@ def cmd_status(args: argparse.Namespace) -> int:
     if not (chunks == vetores == cheios):
         print(f"\nINCONSISTENCIA: {chunks} chunks, {vetores} vetores indexados, "
               f"{cheios} vetores cheios")
-        print("reconstrua o indice: rag forget <dir> e rag index <dir>")
+        print("reconstrua o indice: stego forget <dir> e stego index <dir>")
 
     conn.close()
     return 0
@@ -122,7 +122,7 @@ def cmd_check(args: argparse.Namespace) -> int:
             print(f"  {m.get('name', '?'):<26} {tam:.1f} GB  {pct}")
 
     print(f"\nindice:      {CONFIG.db_path}"
-          f"  {'ok' if CONFIG.db_path.exists() else 'nao criado (rag init-db)'}")
+          f"  {'ok' if CONFIG.db_path.exists() else 'nao criado (stego init-db)'}")
     return 0
 
 
@@ -167,7 +167,7 @@ def cmd_index(args: argparse.Namespace) -> int:
         return 0
 
     if not CONFIG.db_path.exists():
-        print("indice nao existe. Rode: rag init-db")
+        print("indice nao existe. Rode: stego init-db")
         return 1
 
     conn = connect()
@@ -212,7 +212,7 @@ def cmd_search(args: argparse.Namespace) -> int:
     from .search import search
 
     if not CONFIG.db_path.exists():
-        print("indice nao existe. Rode: rag init-db")
+        print("indice nao existe. Rode: stego init-db")
         return 1
 
     conn = connect()
@@ -299,7 +299,7 @@ def cmd_ask(args: argparse.Namespace) -> int:
     from .search import Hit
 
     if not CONFIG.db_path.exists():
-        print("indice nao existe. Rode: rag init-db")
+        print("indice nao existe. Rode: stego init-db")
         return 1
 
     conn = connect()
@@ -340,7 +340,7 @@ def cmd_serve(args: argparse.Namespace) -> int:
     from .server import serve
 
     if not CONFIG.db_path.exists():
-        print("indice nao existe. Rode: rag init-db")
+        print("indice nao existe. Rode: stego init-db")
         return 1
 
     serve(port=args.port)
@@ -349,7 +349,7 @@ def cmd_serve(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="rag",
+        prog="stego",
         description="Base de conhecimento pessoal, local e consultavel.",
     )
     sub = parser.add_subparsers(dest="command", required=True)

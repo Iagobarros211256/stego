@@ -11,7 +11,7 @@ import json
 import httpx
 import pytest
 
-from rag.ollama import GenerationStats, OllamaClient, OllamaError
+from stego.ollama import GenerationStats, OllamaClient, OllamaError
 
 
 def client_with(handler) -> OllamaClient:

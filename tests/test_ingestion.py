@@ -10,12 +10,12 @@ import hashlib
 
 import pytest
 
-from rag.chunkers import MAX_CHUNK_CHARS, MarkdownChunker
-from rag.db import connect
-from rag.documents import detect_sensitivity
-from rag.indexer import index_directory
-from rag.migrations import migrate
-from rag.parsers import MarkdownParser, discover
+from stego.chunkers import MAX_CHUNK_CHARS, MarkdownChunker
+from stego.db import connect
+from stego.documents import detect_sensitivity
+from stego.indexer import index_directory
+from stego.migrations import migrate
+from stego.parsers import MarkdownParser, discover
 
 
 class FakeOllama:
@@ -144,7 +144,7 @@ def test_ragignore_e_respeitado(tmp_path):
 
 
 def test_discovery_reporta_motivos(tmp_path):
-    from rag.parsers import discover_detailed
+    from stego.parsers import discover_detailed
 
     escrever(tmp_path / "LICENSE.md")
     escrever(tmp_path / "node_modules" / "x.md")
@@ -162,7 +162,7 @@ def test_discovery_reporta_motivos(tmp_path):
 
 
 def make_doc(content: str):
-    from rag.documents import Document
+    from stego.documents import Document
 
     return Document(
         source_path="/tmp/x.md", doc_type="markdown", content=content, content_hash="h"

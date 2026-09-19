@@ -18,7 +18,7 @@ from pathlib import Path
 RESTRICTED_DIR_NAMES = {
     d.strip().lower()
     for d in os.environ.get(
-        "RAG_RESTRICTED_DIRS", "financeiro,financas,documentos-pessoais,pessoal"
+        "STEGO_RESTRICTED_DIRS", "financeiro,financas,documentos-pessoais,pessoal"
     ).split(",")
     if d.strip()
 }

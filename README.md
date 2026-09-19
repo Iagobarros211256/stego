@@ -1,4 +1,4 @@
-# rag-pessoal
+# stego
 
 Base de conhecimento pessoal: indexa seus documentos locais e responde
 perguntas em linguagem natural, citando o trecho de origem. Roda
@@ -38,20 +38,20 @@ pip install -e .
 ## Uso
 
 ```bash
-rag check                 # valida ollama, modelos e GPU
-rag init-db               # cria ou migra o indice
-rag index ~/notas --dry-run   # ve o que entraria, sem indexar
-rag index ~/notas             # indexa um diretorio (idempotente)
-rag forget ~/notas            # remove do indice o que veio dali
-rag search "qual porta?"  # so os trechos, sem gerar resposta
-rag ask "qual porta?"     # resposta ancorada, no terminal
-rag serve                 # interface web em 127.0.0.1:8080
-rag status                # estado atual do indice
+stego check                 # valida ollama, modelos e GPU
+stego init-db               # cria ou migra o indice
+stego index ~/notas --dry-run   # ve o que entraria, sem indexar
+stego index ~/notas             # indexa um diretorio (idempotente)
+stego forget ~/notas            # remove do indice o que veio dali
+stego search "qual porta?"  # so os trechos, sem gerar resposta
+stego ask "qual porta?"     # resposta ancorada, no terminal
+stego serve                 # interface web em 127.0.0.1:8080
+stego status                # estado atual do indice
 ```
 
 ## Interface
 
-`rag serve` sobe a pagina em `http://127.0.0.1:8080`. A resposta chega
+`stego serve` sobe a pagina em `http://127.0.0.1:8080`. A resposta chega
 por streaming e os trechos usados aparecem numerados abaixo, com o
 caminho do arquivo e de qual metade da busca cada um veio.
 
@@ -72,7 +72,7 @@ Rank Fusion: vetorial (semantica, para parafrase) e FTS5/BM25 (literal,
 para numeros e nomes proprios). Os finalistas sao reordenados com os
 vetores em precisao cheia.
 
-`rag search -v` mostra de qual metade cada trecho veio e o tempo de
+`stego search -v` mostra de qual metade cada trecho veio e o tempo de
 cada etapa.
 
 ## Cuidado com segredos
@@ -84,7 +84,7 @@ para a pasta de downloads.
 
 ## Corpus
 
-`rag index` percorre o diretorio recursivamente e reindexa apenas o que
+`stego index` percorre o diretorio recursivamente e reindexa apenas o que
 mudou desde a ultima passada. Arquivos que sumiram do disco saem do
 indice.
 
@@ -101,7 +101,7 @@ fora por padrao:
 Para regras proprias, crie um `.ragignore` na raiz do diretorio (um glob
 por linha) ou use `--exclude GLOB`, repetivel.
 
-Documentos sob diretorios listados em `RAG_RESTRICTED_DIRS`
+Documentos sob diretorios listados em `STEGO_RESTRICTED_DIRS`
 (padrao: `financeiro,financas,documentos-pessoais,pessoal`) entram
 marcados como restritos e ficam fora das buscas por padrao.
 
@@ -111,9 +111,9 @@ Tudo por variavel de ambiente, com padroes em `src/rag/config.py`:
 
 | Variavel | Padrao |
 |---|---|
-| `RAG_DB` | `~/.local/share/rag-pessoal/index.sqlite` |
-| `RAG_OLLAMA_HOST` | `http://127.0.0.1:11434` |
-| `RAG_GENERATE_MODEL` | `llama3.1:8b` |
-| `RAG_EMBED_MODEL` | `nomic-embed-text` |
-| `RAG_EMBED_DIMS` | `256` |
-| `RAG_RESTRICTED_DIRS` | `financeiro,financas,documentos-pessoais,pessoal` |
+| `STEGO_DB` | `~/.local/share/stego/index.sqlite` |
+| `STEGO_OLLAMA_HOST` | `http://127.0.0.1:11434` |
+| `STEGO_GENERATE_MODEL` | `llama3.1:8b` |
+| `STEGO_EMBED_MODEL` | `nomic-embed-text` |
+| `STEGO_EMBED_DIMS` | `256` |
+| `STEGO_RESTRICTED_DIRS` | `financeiro,financas,documentos-pessoais,pessoal` |

@@ -7,12 +7,12 @@ import json
 
 import pytest
 
-from rag.answer import RECUSA, Answer, ask, build_prompt, ask_stream
-from rag.db import connect
-from rag.indexer import index_directory
-from rag.migrations import migrate
-from rag.ollama import GenerationStats
-from rag.search import Hit
+from stego.answer import RECUSA, Answer, ask, build_prompt, ask_stream
+from stego.db import connect
+from stego.indexer import index_directory
+from stego.migrations import migrate
+from stego.ollama import GenerationStats
+from stego.search import Hit
 
 
 class FakeClient:
@@ -167,7 +167,7 @@ def test_recusa_tambem_e_registrada(tmp_path):
 
 
 def test_html_nao_faz_requisicao_externa():
-    from rag.web_ui import INDEX_HTML
+    from stego.web_ui import INDEX_HTML
 
     # RNF-01: a pagina nao pode buscar fonte, script ou estilo de fora.
     for proibido in ("http://", "https://", "//fonts.", "cdn."):
@@ -175,7 +175,7 @@ def test_html_nao_faz_requisicao_externa():
 
 
 def test_html_tem_os_elementos_que_o_js_procura():
-    from rag.web_ui import INDEX_HTML
+    from stego.web_ui import INDEX_HTML
 
     for elemento_id in (
         "pergunta", "enviar", "restrito", "resposta", "fontes", "lista",
