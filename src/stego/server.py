@@ -45,7 +45,7 @@ def _hit_to_dict(hit: Hit) -> dict:
 
 
 class Handler(BaseHTTPRequestHandler):
-    server_version = "rag-pessoal"
+    server_version = "stego"
 
     def log_message(self, fmt, *args):  # silencia o log padrao
         pass

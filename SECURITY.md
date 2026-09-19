@@ -37,7 +37,7 @@ para `0.0.0.0`, e cuidado com encaminhamento de porta por SSH.
 
 ## Documentos restritos
 
-Documentos sob diretorios listados em `RAG_RESTRICTED_DIRS` ficam fora
+Documentos sob diretorios listados em `STEGO_RESTRICTED_DIRS` ficam fora
 das buscas por padrao e so aparecem com o alternador ligado. Isso e'
 reducao de exposicao acidental, **nao e' controle de acesso**: quem tem
 o arquivo do indice le tudo, restrito ou nao.

@@ -105,7 +105,7 @@ def cmd_check(args: argparse.Namespace) -> int:
         if len(vector) != CONFIG.embed_dims_full:
             print(f"  AVISO: esperava {CONFIG.embed_dims_full} dims")
         if CONFIG.embed_dims_indexed > len(vector):
-            print("  ERRO: RAG_EMBED_DIMS maior que a dimensao do modelo")
+            print("  ERRO: STEGO_EMBED_DIMS maior que a dimensao do modelo")
             return 1
 
         # Geracao curta: mede tok/s e confirma que foi para a GPU.
