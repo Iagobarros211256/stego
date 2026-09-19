@@ -1,0 +1,22 @@
+# Copie para .ragignore na RAIZ DO DIRETORIO QUE VOCE INDEXA
+# (nao aqui no repo). Um glob por linha.
+
+# --- segredos: mantenha sempre ---
+*recovery*
+*credential*
+*credencial*
+*secret*
+*senha*
+*password*
+*token*
+*apikey*
+*api-key*
+*.key
+*.pem
+*.p12
+id_rsa*
+.env*
+
+# --- ruido comum ---
+*LEIA-ME*
+*readme-zh*

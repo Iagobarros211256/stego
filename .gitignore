@@ -1,0 +1,28 @@
+# ambiente
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# O INDICE CONTEM O TEXTO INTEGRAL DO ACERVO. Nunca versionar.
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.db
+
+# corpus local
+corpus/
+acervo/
+notas/
+
+# regras pessoais de ingestao
+.ragignore
+
+# ambiente local
+.env
+*.local
