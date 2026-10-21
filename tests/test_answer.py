@@ -99,6 +99,26 @@ def test_ask_passa_o_system_prompt(indexed):
     assert RECUSA in system
 
 
+def test_system_prompt_avisa_que_os_trechos_nao_sao_o_acervo_inteiro(indexed):
+    # So garante que a regra chega ao modelo. Se o llama obedece, so da
+    # para medir com o modelo de verdade.
+    cliente = FakeClient()
+    ask(indexed, "liste o que tem no meu acervo", cliente)
+
+    system = cliente.systems[0]
+    assert "nao o acervo inteiro" in system
+    assert "stego status" in system
+
+
+def test_prompt_cita_a_fonte_sem_titulo_duplicado(indexed):
+    cliente = FakeClient()
+    ask(indexed, "qual a porta?", cliente)
+
+    prompt = cliente.prompts[0]
+    assert "Fonte: Deploy > Configuracao" in prompt
+    assert "Deploy — Deploy" not in prompt
+
+
 def test_ask_devolve_texto_e_hits(indexed):
     resposta = ask(indexed, "qual a porta da aplicacao?", FakeClient())
     assert resposta.text

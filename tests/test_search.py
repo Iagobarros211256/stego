@@ -15,6 +15,7 @@ from stego.db import connect
 from stego.indexer import index_directory
 from stego.migrations import migrate
 from stego.search import (
+    Hit,
     build_fts_query,
     reciprocal_rank_fusion,
     search,
@@ -213,3 +214,48 @@ def test_rescore_atribui_distancia(indexed):
     # ordenado por distancia crescente
     distancias = [h.distance for h in resultado.hits]
     assert distancias == sorted(distancias)
+
+
+# --- Citacao ----------------------------------------------------------------
+
+
+def _hit(title, locator, path="/acervo/notas/deploy.md"):
+    return Hit(
+        chunk_id=1, content="", locator=locator, source_path=path,
+        title=title, doc_type="markdown", sensitivity="normal",
+    )
+
+
+def test_citacao_nao_repete_o_titulo_que_ja_abre_o_caminho():
+    # O titulo vem do primeiro H1 e o caminho de headings tambem comeca nele.
+    assert _hit("Deploy", "Deploy > Configuracao").citation == "Deploy > Configuracao"
+
+
+def test_citacao_da_secao_raiz_e_so_o_titulo():
+    assert _hit("Deploy", "Deploy").citation == "Deploy"
+
+
+def test_citacao_mantem_titulo_diferente_do_caminho():
+    # Titulo do frontmatter diferente do H1: os dois informam algo.
+    assert _hit("Guia de operacao", "Deploy > Configuracao").citation == (
+        "Guia de operacao — Deploy > Configuracao"
+    )
+
+
+def test_citacao_nao_confunde_prefixo_de_palavra_com_titulo():
+    # "Deploy" nao e' o titulo de "Deployment > Rollback".
+    assert _hit("Deploy", "Deployment > Rollback").citation == (
+        "Deploy — Deployment > Rollback"
+    )
+
+
+def test_citacao_sem_titulo_usa_o_nome_do_arquivo():
+    assert _hit(None, "(inicio)").citation == "deploy.md — (inicio)"
+
+
+def test_citacao_real_do_indice_nao_tem_titulo_duplicado(indexed):
+    conn, embedder = indexed
+    hits = search(conn, "qual porta a aplicacao escuta", embedder).hits
+    citacoes = [h.citation for h in hits]
+    assert "Deploy > Configuracao" in citacoes
+    assert not any(c.startswith("Deploy — Deploy") for c in citacoes)

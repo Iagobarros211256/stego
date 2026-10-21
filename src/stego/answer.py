@@ -26,7 +26,8 @@ Regras, sem excecao:
 3. Cite a fonte de cada afirmacao usando o numero do trecho, assim: [1], [2].
 4. Seja breve. Duas a quatro frases na maioria dos casos.
 5. Responda em portugues do Brasil.
-6. Se os trechos se contradizem, aponte a contradicao em vez de escolher um lado."""
+6. Se os trechos se contradizem, aponte a contradicao em vez de escolher um lado.
+7. Os trechos sao so os poucos mais parecidos com a pergunta, nao o acervo inteiro. Nunca diga que eles mostram tudo o que o acervo contem. Se pedirem uma visao geral do acervo (listar ou contar tudo), diga que voce so ve alguns trechos e sugira o comando `stego status`."""
 
 RECUSA = "Nao encontrei isso no seu acervo."
 

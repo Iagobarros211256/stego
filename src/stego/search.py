@@ -43,7 +43,14 @@ class Hit:
     @property
     def citation(self) -> str:
         nome = self.title or self.source_path.rsplit("/", 1)[-1]
-        return f"{nome} — {self.locator}" if self.locator else nome
+        if not self.locator:
+            return nome
+        # Em Markdown o titulo costuma ser o primeiro H1, e o caminho de
+        # headings tambem comeca nele: "Deploy — Deploy > Config" repetiria.
+        # O " > " no teste evita confundir "Deploy" com "Deployment > ...".
+        if self.locator == nome or self.locator.startswith(f"{nome} > "):
+            return self.locator
+        return f"{nome} — {self.locator}"
 
 
 @dataclass
